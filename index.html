@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="renderer" content="webkit"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <title>网站标题</title>
+  <link href="http://cdn.bootcss.com/plyr/3.3.9/plyr.css" rel="stylesheet">
+ 
+</head>
+<body>
+<div class="player" style="width:640px;height:360px">
+  <video title="直播TEST"
+         controls crossorigin></video>
+</div>
+<script src="http://cdn.bootcss.com/hls.js/0.9.1/hls.light.min.js"></script>
+<script src="http://cdn.bootcss.com/plyr/3.3.9/plyr.min.js"></script>
+<script>
+  window.onload = function () {
+    var hlsUrl = 'http://你的域名或IP:端口/live/flv/index.m3u8';
+    var video = document.querySelector('video');
+    if (Hls.isSupported()) {
+      var hls = new Hls({autoStartLoad: false});
+      hls.loadSource(hlsUrl);
+      hls.attachMedia(video);
+    } else {
+      var nativeHLS = video.canPlayType('application/vnd.apple.mpegurl');
+      video.src = nativeHLS ? hlsUrl : fallbackUrl;
+    }
+ 
+    video.addEventListener('play', function () {
+      hls.startLoad();
+    }, {once: true});
+ 
+    new Plyr(video);
+  };
+</script>
+</body>
+</html>
