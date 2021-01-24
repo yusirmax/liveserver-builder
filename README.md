@@ -1,5 +1,6 @@
-# liveserver-builder
-# Script of building live server based on centos 6or7
+# liveserver-builder  
+# Script of building live server based on centos 6or7  
+# 本脚本仅供学习交流，请勿用于非法活动！！！
 脚本仅用于CentOS 6/7  
 请解压后执行chmod +x ./live.sh  
 给脚本运行权限  
